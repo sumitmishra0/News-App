@@ -1,0 +1,10 @@
+#showDataDiv{
+    display: grid;
+    grid-template-columns: repeat(4,100%);
+    width: 400px;
+    grid-gap: 20px;
+    height: 50%;
+}
+img{
+    width: 100%;
+}

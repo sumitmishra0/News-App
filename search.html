@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="scripts/scripts.css">
+    <link rel="stylesheet" href="components/navbar.css">
+</head>
+<body>
+    <div id="navbar1"></div>
+    <input type="text" id="inputBox" placeholder="Search">
+    <button id="searchbtn">Search</button>
+    
+    
+    <div id="showDataDiv"></div>
+</body>
+</html>
+
+<script type="module">
+
+import navbar from "./components/navbar.js";
+
+let navbar1 = document.getElementById("navbar1");
+navbar1.innerHTML = navbar();
+
+let inputBox = document.getElementById("inputBox").value;
+  let searchbtn = document.getElementById("searchbtn");
+  searchbtn.addEventListener("click", getData);
+
+  let showDataDiv = document.getElementById("showDataDiv");
+
+  async function getData() {
+    let inputBox = document.getElementById("inputBox").value;
+  let searchbtn = document.getElementById("searchbtn");
+  searchbtn.addEventListener("click", getData)
+
+    let api = `ca8f0292984f429f8337980ea163c70c`;
+
+    let url = `https://newsapi.org/v2/everything?q=${inputBox}&from=2021-12-13&sortBy=popularity&apiKey=${api}`;
+
+    let data = await fetch(url);
+    let data1 = await data.json();
+    let articles = await data1.articles
+    console.log('data1:',articles)
+
+  showData(articles)
+    
+
+
+  }
+
+  function showData(data){
+
+
+    data.forEach(function (item,index){
+      let div = document.createElement("div");
+    //   div.addEventListener("click", showDetails)
+      let h1 = document.createElement("h1")
+      h1.textContent = item.title;
+      let img = document.createElement("img")
+      img.src = item.urlToImage;
+
+      div.append(h1,img);
+      showDataDiv.append(div);
+
+    
+
+    
+
+      
+  })
+  
+  }
+
+</script>
